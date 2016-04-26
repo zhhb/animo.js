@@ -5,7 +5,7 @@
    * Modern browsers and almost all mobile browsers support CSS animations (http://caniuse.com/css-animation).
    *
    * @author Daniel Raftery : twitter/ThrivingKings
-   * @version 1.0.1
+   * @version 1.0.3
   */
   function animo( element, options, callback, other_cb ) {
     
@@ -14,8 +14,9 @@
     	duration: 1,
     	animation: null,
     	iterate: 1,
+    	delay: 0,
     	timing: "linear",
-      keep: false
+    	keep: false
     };
 
     // Browser prefixes for CSS
@@ -122,6 +123,8 @@
       while(ai--) {
 
       	this.element.css(this.prefixes[ai]+"animation-duration", this.options.duration+"s");
+        
+      	this.element.css(this.prefixes[ai]+"animation-delay", this.options.delay+"s");
 
       	this.element.css(this.prefixes[ai]+"animation-iteration-count", this.options.iterate);
 
@@ -168,6 +171,8 @@
   		while(ai--) {
 
       	this.element.css(this.prefixes[ai]+"animation-duration", "");
+        
+      	this.element.css(this.prefixes[ai]+"animation-delay", "");
 
       	this.element.css(this.prefixes[ai]+"animation-iteration-count", "");
 
@@ -189,7 +194,7 @@
       	var svg_id = "svg_" + (((1 + Math.random()) * 0x1000000) | 0).toString(16).substring(1);
       	var filter_id = "filter_" + (((1 + Math.random()) * 0x1000000) | 0).toString(16).substring(1);
 
-      	$('body').append('<svg version="1.1" xmlns="http://www.w3.org/2000/svg" id="'+svg_id+'" style="height:0;"><filter id="'+filter_id+'"><feGaussianBlur stdDeviation="'+this.options.amount+'" /></filter></svg>');
+      	$('body').append('<svg version="1.1" xmlns="http://www.w3.org/2000/svg" id="'+svg_id+'" style="height:0;position:absolute;top:-1000px;"><filter id="'+filter_id+'"><feGaussianBlur stdDeviation="'+this.options.amount+'" /></filter></svg>');
 
       	var ai = this.prefixes.length;
 
